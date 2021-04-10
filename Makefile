@@ -1,3 +1,4 @@
+# Created by Vincent ABEL
 CC=gdc -g
 #CFLAGS=-W -Wall -pedantic
 LDFLAGS=
