@@ -1,24 +1,19 @@
-# Compiled Object files
-*.o
-*.obj
+#Some of these are related to eclipse. So i keep them out of my repo
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+#files being edited
+*~
 
-# Compiled Static libraries
-*.a
-*.lib
-
-# Executables
-*.exe
-
-# DUB
-.dub
-docs.json
-__dummy.html
-docs/
-
-# Code coverage
+# make and build files
 *.lst
+*.o
+*.eep
+*.lss
+*.map
+*.sym
+
+#   Executable
+fast
+
+# I keep these, since I prefer having the reference of the final build
+# *.elf
+# *.hex
