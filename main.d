@@ -12,6 +12,6 @@ void show_test(int a)
 
 void main()
 {
-	auto b=10;
-	show_test(b);
+	int[5][2] f = 3;
+	writeln(f);
 }
