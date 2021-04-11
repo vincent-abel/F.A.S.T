@@ -1,12 +1,26 @@
 // D Language first test
 
 import std.stdio;
+import std.file;
+import std.string;
 
 void main(string[] argv)
 {
 	auto argc = argv.length-1;
-	write(argc);
-	string line;
-        while ((line = readln()) !is null)
-        write(line);
+	if (argc>=1){
+		argc=0;
+		while (++argc<argv.length){
+		if (exists(argv[argc]))
+		{
+			File file = File(argv[argc],"r");
+
+			while (!file.eof()) {
+				string line = strip(file.readln());
+				writeln("read line -> |", line);
+			}
+		}
+		else
+			write("Waring : The file \"",argv[argc],"\" is either non-existent or you don't have credentials\n");
+		}
+	}
 }
