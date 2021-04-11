@@ -20,7 +20,7 @@ void main(string[] argv)
 			}
 		}
 		else
-			write("Waring : The file \"",argv[argc],"\" is either non-existent or you don't have credentials\n");
+			write("Warning : The file \"",argv[argc],"\" is either non-existent or you don't have credentials\n");
 		}
 	}
 }
