@@ -2,28 +2,28 @@
 
 module utils.scanner;
 
+import utils.tokens;
+
 import std.stdio;
 import std.string;
+import std.file;
 import std.regex;
 
-/// runFile on the files inputed
-void runFile(string current) {
+/// Scanner Class
+class Scanner {
+	/// source is storing the whole file
+	string source;
 
-	        writeln("read line -> |", current,"|");
-}
-
-/// runInline to summmon an interpreter
-void runInline() {
-	for (;;) {
-		write("> ");
-		string line = strip(readln());
-		if (!line) return;
-		if (matchAll("quit",line)) return;
-		run(line);
+	/// trivial constructor for Scanner Class
+	this(string source) {
+		this.source = source;
 	}
-}
 
-/// run general
-void run(string line) {
-	writeln("read line -> |", line,"|");
+	/// Implementation of scanToken, returning tokens.
+	Tokens scanToken()
+	{
+		Tokens sth = new Tokens();
+		write("ScanScan");
+		return sth;
+	}
 }

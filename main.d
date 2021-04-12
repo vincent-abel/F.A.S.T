@@ -18,12 +18,8 @@ void main(string[] argv)
 			{
 				if (exists(argv[argc]))
 				{
-					File file = File(argv[argc], "r");
-
-					while (!file.eof())
-					{
-						parse(strip(file.readln()));
-					}
+					//File file = File(argv[argc], "r");
+					runFile(argv[argc]);
 				}
 				else
 					write("Warning : The file \"", argv[argc],
