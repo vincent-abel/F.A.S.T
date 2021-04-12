@@ -3,6 +3,7 @@
 import std.stdio;
 import std.file;
 import std.string;
+import parser;
 
 void main(string[] argv)
 {
@@ -16,7 +17,8 @@ void main(string[] argv)
 
 			while (!file.eof()) {
 				string line = strip(file.readln());
-				writeln("read line -> |", line);
+				parse(line);
+//				writeln("read line -> |", line);
 			}
 		}
 		else
