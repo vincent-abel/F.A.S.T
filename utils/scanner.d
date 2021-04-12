@@ -3,18 +3,27 @@
 module utils.scanner;
 
 import std.stdio;
+import std.string;
+import std.regex;
 
-/// runFile
+/// runFile on the files inputed
 void runFile(string current) {
 
 	        writeln("read line -> |", current,"|");
 }
 
-/// runInline
+/// runInline to summmon an interpreter
 void runInline() {
-
+	for (;;) {
+		write("> ");
+		string line = strip(readln());
+		if (!line) return;
+		if (matchAll("quit",line)) return;
+		run(line);
+	}
 }
 
-void run() {
-
+/// run general
+void run(string line) {
+	writeln("read line -> |", line,"|");
 }
