@@ -8,7 +8,7 @@ EXEC=fast
 SRC= $(wildcard *.d)
 OBJ= $(SRC:.d=.o)
 
-all: $(EXEC)
+all: $(EXEC) clean
 
 fast: $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
@@ -22,6 +22,7 @@ main.o:
 
 clean:
 	rm -rf *.o
+	rm -rf .*.swp
 
 mrproper: clean
 	rm -rf $(EXEC)
