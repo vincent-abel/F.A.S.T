@@ -18,18 +18,17 @@ void main(string[] argv)
 				File file = File(argv[argc],"r");
 	
 				while (!file.eof()) {
-//					string line = strip(file.readln());
 					parse(strip(file.readln()));
-//					writeln("read line -> |", line);
 				}
 			}
 			else
 				write("Warning : The file \"",argv[argc],"\" is either non-existent or you don't have credentials\n");
 			}
 		}
+		else
+			writeln("Usage : ./fast file1 file2 ... || cat something |./fast");
 	}
 	else {
-		write(isatty(0));
 		string line;
 		while ((line = readln()) !is null)
 			parse(strip(line));
