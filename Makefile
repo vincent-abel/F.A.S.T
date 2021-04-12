@@ -5,7 +5,7 @@ CC=gdc -g
 #CFLAGS=-W -Wall -pedantic
 LDFLAGS=
 EXEC=fast
-SRC= $(wildcard *.d)
+SRC= $(wildcard *.d)  $(wildcard */*.d)
 OBJ= $(SRC:.d=.o)
 
 all: $(EXEC) clean
@@ -21,8 +21,8 @@ main.o:
 .PHONY: clean mrproper
 
 clean:
-	rm -rf *.o
-	rm -rf .*.swp
+	rm -rf $(SRC:.d=.o)
+	rm -rf *.swp
 
 mrproper: clean
 	rm -rf $(EXEC)

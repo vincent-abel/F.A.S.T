@@ -3,7 +3,7 @@
 import std.stdio;
 import std.file;
 import std.string;
-import parser;
+import utils;
 import core.sys.posix.unistd;
 
 void main(string[] argv)
