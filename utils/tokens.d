@@ -1,8 +1,9 @@
 // Tokens Module, containing the tokens class
+import std.stdio;
 
-typedef struct Tokens {
-    char *value;
-	enum type {
+struct Tokens {
+    string value;
+	enum type : int{
         TOKEN_ID,
         TOEKN_EQUALS,
         TOKEN_LPAREN,
@@ -19,15 +20,14 @@ typedef struct Tokens {
         TOKEN_LTOEQ,
         TOKEN_INT,
         TOKEN_SEMI,
-    };
-
+    }
 
 }
-Tokens *init_token(char *value, int type)
+
+Tokens init_token(string value)
 {
     Tokens token = Tokens();
     token.value = value;
-    token.type = type;
-
+//    writeln(token);
     return token;
 }

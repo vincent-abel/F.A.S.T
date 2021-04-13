@@ -1,6 +1,6 @@
 module utils.lexer;
 
-import std.string;
+/*import std.string;
 import std.conv;
 import std.ascii;
 import utils;
@@ -61,4 +61,4 @@ class Lexer {
                 return lexer_advance_with(lexer, lexer_parse_id(lexer));
         }
         return new Tokens();
-    }
+    }*/

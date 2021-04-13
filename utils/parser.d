@@ -11,7 +11,8 @@ import std.regex;
 /// runFile on the files inputed
 void runFile(string current) {
 			string file = cast(string)read(current,(File(current, "r")).size);
-	        writeln("File : ",current,"\n--------------\n<<<", file,">>>\n--------------");
+//	        writeln("File : ",current,"\n--------------\n<<<", file,">>>\n--------------");
+			Scanner scanner = new Scanner(file);
 }
 
 /// runInline to summmon an interpreter
