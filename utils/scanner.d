@@ -2,7 +2,7 @@
 
 module utils.scanner;
 
-import utils.tokens;
+import utils;
 
 import std.stdio;
 import std.string;
@@ -20,10 +20,10 @@ class Scanner {
 	}
 
 	/// Implementation of scanToken, returning tokens.
-	Tokens scanToken()
+	Lexer scanToken(string str)
 	{
-		Tokens sth = new Tokens();
+		Lexer lexer = new Lexer(cast(char *)str);
 		write("ScanScan");
-		return sth;
+		return lexer;
 	}
 }

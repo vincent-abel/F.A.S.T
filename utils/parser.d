@@ -2,8 +2,7 @@
 
 module utils.parser;
 
-import utils.tokens;
-import utils.scanner;
+import utils;
 import std.stdio;
 import std.string;
 import std.file;
@@ -28,9 +27,5 @@ void runInline() {
 
 /// run general
 void run(string line) {
-	Scanner scanner = new Scanner(line);
-
-	Tokens tokens = scanner.scanToken();
-
 	writeln("read line -> |", line,"|");
 }
