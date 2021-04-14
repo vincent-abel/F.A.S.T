@@ -27,7 +27,7 @@ struct Tokens {
 Tokens init_token(string value)
 {
     Tokens token = Tokens();
-    token.value = value;
+    token.value ~= value;
     writeln(token);
     return token;
 }

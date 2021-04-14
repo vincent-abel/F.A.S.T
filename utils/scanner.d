@@ -31,8 +31,9 @@ class Scanner {
 
 	/// peek get the next char if possible
 	char peek(string source, int offset) {
-		if (this.index+offset < source.length)
-			return source[this.index+offset];
+		int i= this.index;
+		if (i+offset < source.length)
+			return source[i+offset];
 		return 0;
 	}
 
@@ -41,15 +42,21 @@ class Scanner {
 			this.index +=1;
 		}
 	}
-	/// implementation of next token
+	/// implementation of next token 
+	//// Contains the flagged part to skip not usefull non alphanum
 	void next() {
+		bool flag=0;
 		while (this.index < source.length) {
 			string value;
+			while (!isAlphaNum(source[index]))
+			{
+				flag=true;
+				this.index++;
+			} if (flag) return;
 			while (isAlphaNum(source[index])) {
 				value ~= this.source[index];
 				this.index++;
 			}
-			this.index++;
 			if (value != "") {
 				this.ltoken = this.ltoken ~ init_token(value);
 			}
@@ -60,10 +67,12 @@ class Scanner {
 
 	void nextUnary() {
 		string value;
-		if (this.index < source.length) {
+		if (this.index < this.source.length) {
 			value ~= this.source[this.index];
+			
 			this.ltoken = this.ltoken ~ init_token(value);
-			this.index++;
+			
+			this.index = this.index + 1;
 		}
 	}
 
@@ -102,47 +111,54 @@ class Scanner {
 					} else if (peek(source,1) == '=') {
 						this.nextDouble();
 					} else this.nextUnary();
-				}/*
+					break;
+				}
 				case '=': {
 					if (peek(source,1) == '=') {
 						this.nextDouble();
 					} else { 
 						this.nextUnary();
 					}
+					break;
 				}
-				case '(': {this.nextUnary();}
-				case ')': {this.nextUnary();}
-				case '{': {this.nextUnary();}
-				case '}': {this.nextUnary();}
-				case '[': {this.nextUnary();}
-				case ']': {this.nextUnary();}
-				case ';': {this.nextUnary();}
-				case ',': {this.nextUnary();}
-				case '.': {this.nextUnary();}
+				case '(': {this.nextUnary();break;}
+				case ')': {this.nextUnary();break;}
+				case '{': {this.nextUnary();break;}
+				case '}': {this.nextUnary();break;}
+				case '[': {this.nextUnary();break;}
+				case ']': {this.nextUnary();break;}
+				case ';': {this.nextUnary();break;}
+				case ',': {this.nextUnary();break;}
+				case ' ': {this.index++;break;}
+				case '.': {this.nextUnary();break;}
 				case '+': {
 					if (peek(source,1) == '+') {
 						this.nextDouble();
 					} else if (peek(source,1) == '=') {
 						this.nextDouble();
 					} else this.nextUnary();
+					break;
 				}
 				case '-': {
 					if (peek(source,1) == '-') {
 						this.nextDouble();
 					} else this.nextUnary();
+					break;
 				}
-				case '*': {this.nextUnary();}
+				case '*': {this.nextUnary();break;}
 				case '%':{
 					if (peek(source,1) == '=') {
 						this.nextDouble();
 					} else this.nextUnary();
+					break;
 				}
 				case '^': {
 					if (peek(source,1) == '=') {
 						this.nextDouble();
 					} else this.nextUnary();
+					break;
 				}
-				case '~': {this.nextUnary();}
+				case '~': {this.nextUnary();break;}
 				case '<': {
 					if (peek(source,1) == '=') {
 						this.nextDouble();
@@ -152,6 +168,7 @@ class Scanner {
 						} else this.nextDouble();
 					}
 					else this.nextUnary();
+					break;
 				}
 				case '>': {
 					if (peek(source,1) == '=') {
@@ -162,11 +179,13 @@ class Scanner {
 						} else this.nextDouble();
 					}
 					else this.nextUnary();
+					break;
 				}
 				case '!': {
 					if (peek(source,1) == '=') {
 						this.nextDouble();
 					} else this.nextUnary();
+					break;
 				}
 				case '&': {
 					if (peek(source,1) == '&') {
@@ -174,6 +193,7 @@ class Scanner {
 					} else if (peek(source,1) == '=') {
 						this.nextDouble();
 					} else this.nextUnary();
+					break;
 				}
 				case '|': {
 					if (peek(source,1) == '|') {
@@ -181,14 +201,16 @@ class Scanner {
 					} else if (peek(source,1) == '=') {
 						this.nextDouble();
 					} else this.nextUnary();
+					break;
 				}
-				case '?': {this.nextUnary();}
-				case ':': {this.nextUnary();}
-			//	case '\n': {this.index++;}*/
+				case '?': {this.nextUnary();break;}
+				case ':': {this.nextUnary();break;}
+				case '\n': {this.index++;break;}
+				case '\r': {this.index++;break;}
+				case '\t': {this.index++;break;}
 				default: {
-					
 					this.next();
-					
+					break;
 				//write(source[this.index++]);
 				}
 			}
