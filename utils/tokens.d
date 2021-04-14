@@ -28,6 +28,6 @@ Tokens init_token(string value)
 {
     Tokens token = Tokens();
     token.value = value;
-//    writeln(token);
+    writeln(token);
     return token;
 }
