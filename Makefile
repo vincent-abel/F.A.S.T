@@ -1,7 +1,7 @@
 ###########################
 # Created by Vincent ABEL #
 ###########################
-CC=gdc -g -fdoc -fdoc-dir=doc/
+CC=gdc -g #-fdoc -fdoc-dir=doc/
 #CFLAGS=-W -Wall -pedantic
 LDFLAGS=
 EXEC=fast

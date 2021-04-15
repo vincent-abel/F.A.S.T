@@ -19,7 +19,7 @@ class Scanner
 	/// index inside the source
 	int index;
 	/// will keep the line
-	int line;
+	int line = 1;
 	/// Storing all the tokens here
 	Tokens[] ltoken;
 
@@ -34,10 +34,14 @@ class Scanner
 	/// peek get the next char if possible
 	char peek(string source, int offset)
 	{
-		int i = this.index;
-		if (i + offset < source.length)
-			return source[i + offset];
+		if (this.index + offset < source.length)
+			return source[index + offset];
 		return 0;
+	}
+
+	void error(int line, string message)
+	{
+		writeln("Line ", line, " :", message);
 	}
 
 	void skip_to_newline()
@@ -52,17 +56,30 @@ class Scanner
 	void next()
 	{
 		bool flag = 0;
+		bool digit = 0;
 		while (this.index < source.length)
 		{
 			string value;
-			while (!isAlphaNum(source[index]))
+			while (isDigit(source[index]) || (digit && source[index]=='.' && isDigit(peek(source,1))))
+			{
+				digit = true;
+				value ~= this.source[index];
+				this.index++;
+			} 
+			if (digit)
+			{
+				this.ltoken = this.ltoken ~ init_token(value);
+				return;
+			}
+
+			while (!isAlphaNum(source[index]) && source[index] != '_')
 			{
 				flag = true;
 				this.index++;
 			}
 			if (flag)
 				return;
-			while (isAlphaNum(source[index]))
+			while (isAlphaNum(source[index]) || source[index] == '_')
 			{
 				value ~= this.source[index];
 				this.index++;
@@ -70,7 +87,9 @@ class Scanner
 			if (value != "")
 			{
 				this.ltoken = this.ltoken ~ init_token(value);
+				return;
 			}
+
 			return;
 		}
 		return;
@@ -137,13 +156,16 @@ class Scanner
 				value ~= this.source[index];
 				this.index++;
 			}
+			if (this.index == source.length)
+				this.error(line, "No matching '\"' found ");
 			return;
 		}
 	}
 	/// Implementation of scan.
 	void scan()
 	{
-
+		string value;
+		value ~= '\0';
 		while (this.index < source.length)
 		{
 			switch (source[this.index])
@@ -366,6 +388,7 @@ class Scanner
 				}
 			case '\n':
 				{
+					line++;
 					this.index++;
 					break;
 				}
@@ -399,6 +422,7 @@ class Scanner
 			}
 			//			write("|",source[this.index],"|");
 		}
+		init_token(value);
 		//	write(this.ltoken);
 	}
 }
