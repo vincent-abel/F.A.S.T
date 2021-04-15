@@ -38,12 +38,13 @@ class Scanner
 			return source[index + offset];
 		return 0;
 	}
-
+	/// Little Error function for displaying Error Line
 	void error(int line, string message)
 	{
 		writeln("Line ", line, " :", message);
 	}
-
+	/// 	void skip_to_newline()
+	/// 	Skip to the next newline
 	void skip_to_newline()
 	{
 		while (source[this.index] != '\n')
@@ -68,7 +69,7 @@ class Scanner
 			} 
 			if (digit)
 			{
-				this.ltoken = this.ltoken ~ init_token(value,tk_type.NUMERIC);
+				this.ltoken = this.ltoken ~ init_token(value,tktype.NUMERIC);
 				return;
 			}
 
@@ -86,7 +87,7 @@ class Scanner
 			}
 			if (value != "")
 			{
-				this.ltoken = this.ltoken ~ init_token(value,tk_type.IDENTIFIERS);
+				this.ltoken = this.ltoken ~ init_token(value,tktype.IDENTIFIERS);
 				return;
 			}
 
@@ -94,7 +95,8 @@ class Scanner
 		}
 		return;
 	}
-
+	/// 	void nextUnary(int type) 
+	/// 	Used for token of only one char
 	void nextUnary(int type)
 	{
 		string value;
@@ -107,7 +109,8 @@ class Scanner
 			this.index = this.index + 1;
 		}
 	}
-
+	/// 	void nextDouble(int type)
+	///  	Used for token of 2 chars
 	void nextDouble(int type)
 	{
 		string value;
@@ -120,7 +123,8 @@ class Scanner
 
 		return;
 	}
-
+	///		void nextTriple(int type)
+	///		Used for token of 3 char long.
 	void nextTriple(int type)
 	{
 		string value;
@@ -134,7 +138,8 @@ class Scanner
 
 		return;
 	}
-
+	///		void nextLiteral(int type)
+	/// 	Used for creating a token of "any double quoted string"
 	void nextLiteral(int type)
 	{
 		string value;
@@ -178,62 +183,62 @@ class Scanner
 					}
 					else if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_DIVASSIGN);
+						this.nextDouble(tktype.TOKEN_DIVASSIGN);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_SLASH);
+						this.nextUnary(tktype.TOKEN_SLASH);
 					break;
 				}
 			case '=':
 				{
 					if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_EQUALS);
+						this.nextDouble(tktype.TOKEN_EQUALS);
 					}
 					else
 					{
-						this.nextUnary(tk_type.TOKEN_ASSIGN);
+						this.nextUnary(tktype.TOKEN_ASSIGN);
 					}
 					break;
 				}
 			case '(':
 				{
-					this.nextUnary(tk_type.TOKEN_LPAREN);
+					this.nextUnary(tktype.TOKEN_LPAREN);
 					break;
 				}
 			case ')':
 				{
-					this.nextUnary(tk_type.TOKEN_RPAREN);
+					this.nextUnary(tktype.TOKEN_RPAREN);
 					break;
 				}
 			case '{':
 				{
-					this.nextUnary(tk_type.TOKEN_LBRACE);
+					this.nextUnary(tktype.TOKEN_LBRACE);
 					break;
 				}
 			case '}':
 				{
-					this.nextUnary(tk_type.TOKEN_RBRACE);
+					this.nextUnary(tktype.TOKEN_RBRACE);
 					break;
 				}
 			case '[':
 				{
-					this.nextUnary(tk_type.TOKEN_LBRACK);
+					this.nextUnary(tktype.TOKEN_LBRACK);
 					break;
 				}
 			case ']':
 				{
-					this.nextUnary(tk_type.TOKEN_RBRACK);
+					this.nextUnary(tktype.TOKEN_RBRACK);
 					break;
 				}
 			case ';':
 				{
-					this.nextUnary(tk_type.TOKEN_SEMI);
+					this.nextUnary(tktype.TOKEN_SEMI);
 					break;
 				}
 			case ',':
 				{
-					this.nextUnary(tk_type.TOKEN_COMMA);
+					this.nextUnary(tktype.TOKEN_COMMA);
 					break;
 				}
 			case ' ':
@@ -243,147 +248,147 @@ class Scanner
 				}
 			case '.':
 				{
-					this.nextUnary(tk_type.TOKEN_DOT);
+					this.nextUnary(tktype.TOKEN_DOT);
 					break;
 				}
 			case '+':
 				{
 					if (peek(source, 1) == '+')
 					{
-						this.nextDouble(tk_type.TOKEN_INCREMENT);
+						this.nextDouble(tktype.TOKEN_INCREMENT);
 					}
 					else if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_ADDASSIGN);
+						this.nextDouble(tktype.TOKEN_ADDASSIGN);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_ADD);
+						this.nextUnary(tktype.TOKEN_ADD);
 					break;
 				}
 			case '-':
 				{
 					if (peek(source, 1) == '-')
 					{
-						this.nextDouble(tk_type.TOKEN_DECREMENT);
+						this.nextDouble(tktype.TOKEN_DECREMENT);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_MINUS);
+						this.nextUnary(tktype.TOKEN_MINUS);
 					break;
 				}
 			case '*':
 				{
-					this.nextUnary(tk_type.TOKEN_MULT);
+					this.nextUnary(tktype.TOKEN_MULT);
 					break;
 				}
 			case '%':
 				{
 					if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_MODASSIGN);
+						this.nextDouble(tktype.TOKEN_MODASSIGN);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_MODULO);
+						this.nextUnary(tktype.TOKEN_MODULO);
 					break;
 				}
 			case '^':
 				{
 					if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_BITXOR);
+						this.nextDouble(tktype.TOKEN_BITXOR);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_POWER);
+						this.nextUnary(tktype.TOKEN_POWER);
 					break;
 				}
 			case '~':
 				{
-					this.nextUnary(tk_type.TOKEN_BITFLIP);
+					this.nextUnary(tktype.TOKEN_BITFLIP);
 					break;
 				}
 			case '<':
 				{
 					if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_LTOEQ);
+						this.nextDouble(tktype.TOKEN_LTOEQ);
 					}
 					else if (peek(source, 1) == '<')
 					{
 						if (peek(source, 2) == '=')
 						{
-							this.nextTriple(tk_type.TOKEN_LSHIFT);
+							this.nextTriple(tktype.TOKEN_LSHIFT);
 						}
 						else
-							this.nextDouble(tk_type.TOKEN_LBITFLIP);
+							this.nextDouble(tktype.TOKEN_LBITFLIP);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_LT);
+						this.nextUnary(tktype.TOKEN_LT);
 					break;
 				}
 			case '>':
 				{
 					if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_GTOEQ);
+						this.nextDouble(tktype.TOKEN_GTOEQ);
 					}
 					else if (peek(source, 1) == '>')
 					{
 						if (peek(source, 2) == '=')
 						{
-							this.nextTriple(tk_type.TOKEN_RSHIFT);
+							this.nextTriple(tktype.TOKEN_RSHIFT);
 						}
 						else
-							this.nextDouble(tk_type.TOKEN_RBITFLIP);
+							this.nextDouble(tktype.TOKEN_RBITFLIP);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_GT);
+						this.nextUnary(tktype.TOKEN_GT);
 					break;
 				}
 			case '!':
 				{
 					if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_NEQUAL);
+						this.nextDouble(tktype.TOKEN_NEQUAL);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_NOT);
+						this.nextUnary(tktype.TOKEN_NOT);
 					break;
 				}
 			case '&':
 				{
 					if (peek(source, 1) == '&')
 					{
-						this.nextDouble(tk_type.TOKEN_AND);
+						this.nextDouble(tktype.TOKEN_AND);
 					}
 					else if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_BITAND);
+						this.nextDouble(tktype.TOKEN_BITAND);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_RETADDR);
+						this.nextUnary(tktype.TOKEN_RETADDR);
 					break;
 				}
 			case '|':
 				{
 					if (peek(source, 1) == '|')
 					{
-						this.nextDouble(tk_type.TOKEN_OR);
+						this.nextDouble(tktype.TOKEN_OR);
 					}
 					else if (peek(source, 1) == '=')
 					{
-						this.nextDouble(tk_type.TOKEN_BITOR);
+						this.nextDouble(tktype.TOKEN_BITOR);
 					}
 					else
-						this.nextUnary(tk_type.TOKEN_PIPE);
+						this.nextUnary(tktype.TOKEN_PIPE);
 					break;
 				}
 			case '?':
 				{
-					this.nextUnary(tk_type.TOKEN_QUESMARK);
+					this.nextUnary(tktype.TOKEN_QUESMARK);
 					break;
 				}
 			case ':':
 				{
-					this.nextUnary(tk_type.TOKEN_COLON);
+					this.nextUnary(tktype.TOKEN_COLON);
 					break;
 				}
 			case '\n':
@@ -408,7 +413,7 @@ class Scanner
 					{
 						if (peek(source, -1) != '\\')
 						{
-							this.nextLiteral(tk_type.TOKEN_LITERAL);
+							this.nextLiteral(tktype.TOKEN_LITERAL);
 
 						}
 					}
@@ -422,7 +427,7 @@ class Scanner
 			}
 			//			write("|",source[this.index],"|");
 		}
-		init_token(value,tk_type.EOF);
+		init_token(value,tktype.EOF);
 		//	write(this.ltoken);
 	}
 }

@@ -2,7 +2,8 @@
 import std.stdio;
 import std.conv;
 
-enum tk_type {
+/// a little enum to keep track of all token types
+enum tktype {
     TOKEN_ID,
     TOKEN_EQUALS,
     TOKEN_LPAREN,
@@ -53,22 +54,28 @@ enum tk_type {
     STRING,
     KEYWORD,
     EOF,
-};
+}
+/// Definition of the Tokens
 struct Tokens {
+    /// Tokens value
     string value;
+    /// Tokens type
     int type;
 
 }
 
 
-
-Tokens init_token(string value)
+/// Tokens init_token(string value)
+/// deprecated
+deprecated Tokens init_token(string value)
 {
     Tokens token = Tokens();
     token.value ~= value;
     writeln(token," ",token.type);
     return token;
 }
+/// Tokens init_token(string value, int type)
+/// Init a token with value and type.
 Tokens init_token(string value, int type)
 {
     Tokens token = Tokens();
