@@ -8,8 +8,6 @@ import core.sys.posix.unistd;
 
 void main(string[] argv)
 {
-	/*if (isatty(0))
-	{*/
 		auto argc = cast(int) argv.length - 1;
 		if (argc >= 1)
 		{
@@ -28,13 +26,4 @@ void main(string[] argv)
 		}
 		else
 		runInline();
-/*			writeln("Usage : ./fast file1 file2 ... || cat something |./fast");
-	}
-	else
-	{
-		string line;
-		while ((line = readln()) !is null)
-			runInline(strip(line));
-	}
-	*/
 }
