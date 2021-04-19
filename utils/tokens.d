@@ -1,4 +1,7 @@
-// Tokens Module, containing the tokens class
+// Tokens Module, containing the tokens structs and functions
+
+module utils.tokens;
+
 import std.stdio;
 import std.conv;
 

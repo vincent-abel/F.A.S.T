@@ -61,15 +61,16 @@ class Scanner
 		while (this.index < source.length)
 		{
 			string value;
-			while (isDigit(source[index]) || (digit && source[index]=='.' && isDigit(peek(source,1))))
+			while (isDigit(source[index]) || (digit && source[index] == '.'
+					&& isDigit(peek(source, 1))))
 			{
 				digit = true;
 				value ~= this.source[index];
 				this.index++;
-			} 
+			}
 			if (digit)
 			{
-				this.ltoken = this.ltoken ~ init_token(value,tktype.NUMERIC);
+				this.ltoken = this.ltoken ~ init_token(value, tktype.NUMERIC);
 				return;
 			}
 
@@ -87,7 +88,7 @@ class Scanner
 			}
 			if (value != "")
 			{
-				this.ltoken = this.ltoken ~ init_token(value,tktype.IDENTIFIERS);
+				this.ltoken = this.ltoken ~ init_token(value, tktype.IDENTIFIERS);
 				return;
 			}
 
@@ -104,7 +105,7 @@ class Scanner
 		{
 			value ~= this.source[this.index];
 
-			this.ltoken = this.ltoken ~ init_token(value,type);
+			this.ltoken = this.ltoken ~ init_token(value, type);
 
 			this.index = this.index + 1;
 		}
@@ -422,12 +423,12 @@ class Scanner
 				{
 					this.next(0);
 					break;
-					//write(source[this.index++]);
+					// write(source[this.index++]);
 				}
 			}
-			//			write("|",source[this.index],"|");
+			// write("|",source[this.index],"|");
 		}
-		init_token(value,tktype.EOF);
-		//	write(this.ltoken);
+		init_token(value, tktype.EOF);
+		// write(this.ltoken);
 	}
 }

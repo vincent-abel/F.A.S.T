@@ -39,11 +39,51 @@
 <dd><u>peek</u> get the next char if possible<br><br>
 
 </dd>
-<dt><big><a name="Scanner.next"></a>void <u>next</u>();
+<dt><big><a name="Scanner.error"></a>void <u>error</u>(int <i>line</i>, string <i>message</i>);
+</big></dt>
+<dd>Little Error function for displaying Error Line<br><br>
+
+</dd>
+<dt><big><a name="Scanner.skip_to_newline"></a>void <u>skip_to_newline</u>();
+</big></dt>
+<dd>void <u>skip_to_newline</u>()
+<br><br>
+Skip to the next newline<br><br>
+
+</dd>
+<dt><big><a name="Scanner.next"></a>void <u>next</u>(int <i>type</i>);
 </big></dt>
 <dd>implementation of <u>next</u> token
 <br><br>
 Contains the flagged part to skip not usefull non alphanum<br><br>
+
+</dd>
+<dt><big><a name="Scanner.nextUnary"></a>void <u>nextUnary</u>(int <i>type</i>);
+</big></dt>
+<dd>void <u>nextUnary</u>(int <i>type</i>)
+<br><br>
+Used for token of only one char<br><br>
+
+</dd>
+<dt><big><a name="Scanner.nextDouble"></a>void <u>nextDouble</u>(int <i>type</i>);
+</big></dt>
+<dd>void <u>nextDouble</u>(int <i>type</i>)
+<br><br>
+Used for token of 2 chars<br><br>
+
+</dd>
+<dt><big><a name="Scanner.nextTriple"></a>void <u>nextTriple</u>(int <i>type</i>);
+</big></dt>
+<dd>void <u>nextTriple</u>(int <i>type</i>)
+<br><br>
+Used for token of 3 char long.<br><br>
+
+</dd>
+<dt><big><a name="Scanner.nextLiteral"></a>void <u>nextLiteral</u>(int <i>type</i>);
+</big></dt>
+<dd>void <u>nextLiteral</u>(int <i>type</i>)
+<br><br>
+Used for creating a token of "any double quoted string"<br><br>
 
 </dd>
 <dt><big><a name="Scanner.scan"></a>void <u>scan</u>();

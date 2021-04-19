@@ -16,7 +16,6 @@ void main(string[] argv)
 			{
 				if (exists(argv[argc]))
 				{
-					//File file = File(argv[argc], "r");
 					runFile(argv[argc]);
 				}
 				else
