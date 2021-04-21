@@ -10,7 +10,7 @@ import std.regex;
 
 void showFile(string current, string file)
 {
-	writeln("File : ", current, "\n--------------\n<<<", file, ">>>\n--------------");
+	writeln("File : ", current, "\n------------\n<<<", file, ">>>\n------------");
 }
 /// runFile on the files inputed
 void runFile(string current)
